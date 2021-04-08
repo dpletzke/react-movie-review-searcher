@@ -9,9 +9,6 @@ import { getMovieReviews } from 'resources/reviews/reviews.actions'
 
 export function HomePage(props) {
   const history = useHistory()
-  console.log({props})
-
-  
   useEffect(() => {
     props.getMovieReviews()
   }, [])
@@ -26,7 +23,12 @@ export function HomePage(props) {
         <h1>I am no Jedi.</h1>
         <p>&mdash; Ahsoka Tano</p>
         {props.reviews.data.map((review, i) => {
-          return <span>{i}{JSON.stringify(review)}</span>
+          return (
+            <span>
+              {i}
+              {JSON.stringify(review)}
+            </span>
+          )
         })}
       </main>
     </div>
@@ -34,7 +36,7 @@ export function HomePage(props) {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return state.resources;
+  return state.resources
 }
 
 const mapDispatchToProps = dispatch => ({
