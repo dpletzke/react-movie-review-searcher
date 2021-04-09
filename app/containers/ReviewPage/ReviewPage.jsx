@@ -10,13 +10,13 @@ import ReviewDetails from './components/ReviewDetails'
 
 export function ReviewPage(props) {
   const { review } = props
-  console.log('reviewpage', props)
 
   const history = useHistory()
 
   /**
    * if no Review is passed in it probably means the
-   * review page was attempted to be accessed directly
+   * review page was attempted to be accessed directly through the address bar
+   * in which case, load reviews into the store and refresh the page
    */
   useEffect(() => {
     if (!props.review) {
@@ -26,12 +26,12 @@ export function ReviewPage(props) {
   }, [])
 
   return (
-    <div>
+    <>
       <Helmet>
         <meta name="Review of " content="Review" />
       </Helmet>
       <main>{review && <ReviewDetails review={review} />}</main>
-    </div>
+    </>
   )
 }
 

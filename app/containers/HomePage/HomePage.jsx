@@ -14,7 +14,7 @@ export function HomePage(props) {
   }, [])
 
   return (
-    <div>
+    <>
       <Helmet>
         <meta name="description" content="Home" />
       </Helmet>
@@ -23,7 +23,7 @@ export function HomePage(props) {
           return <Review key={review.id} review={review} />
         })}
       </main>
-    </div>
+    </>
   )
 }
 
