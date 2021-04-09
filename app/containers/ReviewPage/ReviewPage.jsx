@@ -7,6 +7,7 @@ import { Switch, Route, useHistory, useParams } from 'react-router-dom'
 import { getMovieReviews } from 'resources/reviews/reviews.actions'
 
 import ReviewDetails from './components/ReviewDetails'
+import Navbar from '../App/components/Navbar'
 
 export function ReviewPage(props) {
   const { review } = props
@@ -25,18 +26,32 @@ export function ReviewPage(props) {
     }
   }, [])
 
+  const navProps = {
+    leftNav: {
+      title: '<Back',
+      onClick: () => {
+        history.push('/')
+      },
+    },
+    title: `Review of ${review.title}`,
+  }
+
   return (
     <>
       <Helmet>
         <meta name="Review of " content="Review" />
       </Helmet>
-      <main>{review && <ReviewDetails review={review} />}</main>
+      <main>
+        <Navbar {...navProps} />
+        {review && <ReviewDetails review={review} />}
+      </main>
     </>
   )
 }
 
 const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params
+  //TODO validate params
   const review = state.resources.reviews.data[Number(id)]
   return { review }
 }
