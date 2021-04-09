@@ -4,11 +4,11 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { Switch, Route, useHistory } from 'react-router-dom'
 
-import hesImg from 'images/hes.png'
 import { getMovieReviews } from 'resources/reviews/reviews.actions'
 
+import Review from './components/Review'
+
 export function HomePage(props) {
-  const history = useHistory()
   useEffect(() => {
     props.getMovieReviews()
   }, [])
@@ -19,16 +19,8 @@ export function HomePage(props) {
         <meta name="description" content="Home" />
       </Helmet>
       <main>
-        <img src={hesImg} />
-        <h1>I am no Jedi.</h1>
-        <p>&mdash; Ahsoka Tano</p>
-        {props.reviews.data.map((review, i) => {
-          return (
-            <span>
-              {i}
-              {JSON.stringify(review)}
-            </span>
-          )
+        {props.reviews.data.map(review => {
+          return <Review key={review.id} review={review} />
         })}
       </main>
     </div>
