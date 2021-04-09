@@ -8,9 +8,19 @@ import { getMovieReviews } from 'resources/reviews/reviews.actions'
 
 import Navbar from '../App/components/Navbar'
 import Review from './components/Review'
+import FilterForm from './components/FilterForm'
 
 export function HomePage(props) {
   const history = useHistory()
+  const [filter, setFilter] = useState({
+    title: '',
+    displayAmount: 20,
+    rating: '',
+    dateStart: null,
+    dateEnd: null,
+    isPick: '',
+  })
+
   useEffect(() => {
     props.getMovieReviews()
   }, [])
@@ -33,6 +43,7 @@ export function HomePage(props) {
       </Helmet>
       <main>
         <Navbar {...navProps} />
+        <FilterForm {...{ filter, setFilter }} />
         {props.reviews.map(review => {
           return <Review key={review.id} review={review} />
         })}
