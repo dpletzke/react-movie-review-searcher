@@ -11,6 +11,7 @@ import { Helmet } from 'react-helmet' // Header Generator
 import { Switch, Route } from 'react-router-dom'
 
 import HomePage from 'containers/HomePage/HomePage'
+import ReviewPage from 'containers/ReviewPage/ReviewPage'
 
 import '../../styles/styles.scss'
 
@@ -24,6 +25,7 @@ export default function App(props) {
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/home" component={HomePage} />
+        <Route path="/reviews/:id" component={ReviewPage} />
       </Switch>
     </div>
   )
