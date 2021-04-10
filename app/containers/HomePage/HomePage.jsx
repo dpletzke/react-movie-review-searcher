@@ -13,10 +13,16 @@ import SearchBox from './components/SearchBox'
 
 import useFilter from '../../hooks/useFilter'
 import { defaults } from '../OptionsForm/settings'
+import DateRangePicker from './components/DateRangePicker'
 
 export function HomePage(props) {
   const history = useHistory()
-  const [filter, filterSetters] = useFilter({ ...defaults, title: '' })
+  const [filter, filterSetters] = useFilter({
+    ...defaults,
+    title: '',
+    startDate: null,
+    endDate: null,
+  })
 
   useEffect(() => {
     props.getMovieReviews()
@@ -33,6 +39,10 @@ export function HomePage(props) {
     },
   }
 
+  /**
+   * check helper functions for filter
+   * checks return true if filter option not defined
+   */
   const check = {
     title: title => {
       if (!filter.title.length) return true
@@ -52,15 +62,23 @@ export function HomePage(props) {
         (filter.isPick.includes('Ditch') && !isPick)
       )
     },
+    isInDateRange: published => {
+      const pubDate = new Date(published)
+      const checkStart = !filter.startDate || filter.startDate <= pubDate
+      const checkEnd = !filter.endDate || filter.endDate >= pubDate
+
+      return checkStart && checkEnd
+    },
   }
 
-  const applyFilter = (filter, reviews) => {
+  const applyFilter = reviews => {
     return reviews
       .filter(review => {
         return (
           check.title(review.display_title) &&
           check.rating(review.mpaa_rating) &&
-          check.isPick(review.critics_pick)
+          check.isPick(review.critics_pick) &&
+          check.isInDateRange(review.publication_date)
         )
       })
       .slice(0, filter.displayAmount)
@@ -73,8 +91,9 @@ export function HomePage(props) {
       <main>
         <Navbar {...navProps} />
         <SearchBox title={filter.title} setTitle={filterSetters.setTitle} />
-        <OptionsForm setters={filterSetters} filter={filter} />
-        {applyFilter(filter, props.reviews).map(review => {
+        <OptionsForm filter={filter} setters={filterSetters} />
+        <DateRangePicker filter={filter} setters={filterSetters} />
+        {applyFilter(props.reviews).map(review => {
           return <Review key={review.id} review={review} />
         })}
       </main>

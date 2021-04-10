@@ -28,13 +28,12 @@ const useFilter = defaults => {
       }
     },
 
-    // setDateStart: function (time) {
-    //   if (params.timeLimit !== time) {
-    //     setFilter({ ...params, timeLimit: time });
-    //   } else {
-    //     setFilter({ ...params, timeLimit: null });
-    //   }
-    // }
+    setStartDate: function(date) {
+      setFilter(prev => ({ ...prev, startDate: date }))
+    },
+    setEndDate: function(date) {
+      setFilter(prev => ({ ...prev, endDate: date }))
+    },
   }
 
   return [filter, filterSetters]
