@@ -1,0 +1,19 @@
+// @import "../../../styles/variables.scss";
+
+.option-item {
+  border: 1px solid var(--main-red);
+  color: var(--main-red-dark);
+  padding: 0.2rem 0.5rem;
+  // background-color: lighten($color-secondary-background, $amount: 10%);
+  &:hover {
+    background-color: var(--grey-200);
+    cursor: pointer;
+  }
+  &--selected {
+    color: var(--white);
+    background-color: var(--main-red);
+    &:hover {
+      background-color: var(--main-red-dark);
+    }
+  }
+}
