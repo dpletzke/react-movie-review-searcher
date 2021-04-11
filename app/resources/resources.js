@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import { combineEpics } from 'redux-observable'
 
+import uiReducer from './ui/ui.reducer'
+
 import reviewsReducer from './reviews/reviews.reducer'
 import reviewsEpic from './reviews/reviews.epics'
 
@@ -14,4 +16,5 @@ export const resourcesEpic = combineEpics(reviewsEpic, criticsEpic)
 export const resourcesReducer = combineReducers({
   reviews: reviewsReducer,
   critics: criticsReducer,
+  ui: uiReducer,
 })
