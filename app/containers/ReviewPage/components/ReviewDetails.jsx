@@ -23,7 +23,6 @@ const CardBody = styled.section`
 
 export function ReviewDetails(props) {
   const history = useHistory()
-  console.log(props)
 
   const {
     id,
