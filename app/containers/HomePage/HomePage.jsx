@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
 import { getMovieReviews } from 'resources/reviews/reviews.actions'
+import { setUiFilter } from 'resources/ui/ui.actions'
 
 import Navbar from '../App/components/Navbar'
 import Review from './components/Review'
@@ -17,12 +18,12 @@ import DateRangePicker from './components/DateRangePicker'
 
 export function HomePage(props) {
   const history = useHistory()
-  const [filter, filterSetters] = useFilter({
-    ...defaults,
-    title: '',
-    startDate: null,
-    endDate: null,
-  })
+  const initalFilter = props.filter
+  const [filter, filterSetters] = useFilter(initalFilter)
+
+  useEffect(() => {
+    props.setUiFilter(filter)
+  }, [filter])
 
   useEffect(() => {
     props.getMovieReviews()
@@ -102,11 +103,15 @@ export function HomePage(props) {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  return { reviews: state.resources.reviews.data }
+  return {
+    reviews: state.resources.reviews.data,
+    filter: state.resources.ui.filter,
+  }
 }
 
 const mapDispatchToProps = dispatch => ({
   getMovieReviews: () => dispatch(getMovieReviews()),
+  setUiFilter: filter => dispatch(setUiFilter(filter)),
 })
 
 export default compose(
