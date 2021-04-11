@@ -12,6 +12,7 @@ import { Switch, Route } from 'react-router-dom'
 
 import HomePage from 'containers/HomePage/HomePage'
 import ReviewPage from 'containers/ReviewPage/ReviewPage'
+import CriticsPage from 'containers/CriticsPage/CriticsPage'
 
 import '../../styles/styles.scss'
 
@@ -26,6 +27,7 @@ export default function App(props) {
         <Route path="/" component={HomePage} exact />
         <Route path="/home" component={HomePage} />
         <Route path="/reviews/:id" component={ReviewPage} />
+        <Route path="/critics" component={CriticsPage} />
       </Switch>
     </div>
   )
