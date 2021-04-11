@@ -7,7 +7,6 @@ export function DateRangePicker(props) {
   const { filter, setters } = props
   const { startDate, endDate } = filter
   const { setStartDate, setEndDate } = setters
-  console.log(props)
   const changeStartDate = date => {
     setStartDate(date)
   }
