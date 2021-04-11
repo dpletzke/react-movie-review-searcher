@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce from 'immer'
 
 import {
   REVIEWS_FETCH_REQUEST,
@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   data: [],
+  criticsReviewTracker: [],
 }
 
 export default (state = initialState, action) => {
@@ -15,6 +16,23 @@ export default (state = initialState, action) => {
     case REVIEWS_FETCH_SUCCESS:
       return produce(state, draftState => {
         draftState.data = action.payload
+        draftState.criticsReviewTracker = action.payload.reduce(
+          (acc, review) => {
+            const { critics_pick, byline } = review
+            const criticRef = acc[byline]
+            if (criticRef) {
+              criticRef.totalReviews += 1
+              criticRef.totalPicks += critics_pick
+            } else {
+              acc[byline] = {
+                totalReviews: 1,
+                totalPicks: critics_pick,
+              }
+            }
+            return acc
+          },
+          {}
+        )
         return draftState
       })
     //TODO: implement error handling

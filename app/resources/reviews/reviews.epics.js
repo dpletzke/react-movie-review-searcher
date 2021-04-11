@@ -7,6 +7,7 @@ import {
   REVIEWS_FETCH_FAILURE,
 } from './reviews.actions'
 
+import { CRITICS_FETCH_REQUEST } from '../critics/critics.actions'
 
 const fetchReviews = (action$, state$, { get }) =>
   action$.pipe(
@@ -29,4 +30,13 @@ const fetchReviews = (action$, state$, { get }) =>
     )
   )
 
-export default combineEpics(fetchReviews)
+const triggerCriticsRequest = (action$, state$, { get }) => {
+  return action$.pipe(
+    ofType(REVIEWS_FETCH_SUCCESS),
+    mergeMap(() => {
+      return of({ type: CRITICS_FETCH_REQUEST })
+    })
+  )
+}
+
+export default combineEpics(fetchReviews, triggerCriticsRequest)
