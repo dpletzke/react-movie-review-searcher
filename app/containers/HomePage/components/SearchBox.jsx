@@ -12,7 +12,7 @@ export function SearchBox(props) {
     debouceTimer = setTimeout(() => {
       setTitle(value)
       clearTimeout(debouceTimer)
-    }, 500)
+    }, 100)
   }, [])
 
   const changeTitle = e => {
