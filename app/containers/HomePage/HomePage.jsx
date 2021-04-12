@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import { Helmet } from 'react-helmet' // Header Generator
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -13,9 +12,9 @@ import Review from './components/Review'
 import OptionsForm from '../OptionsForm'
 import SearchBox from './components/SearchBox'
 import DropDown from './components/DropDown'
+import DateRangePicker from './components/DateRangePicker'
 
 import useFilter from '../../hooks/useFilter'
-import DateRangePicker from './components/DateRangePicker'
 
 export function HomePage(props) {
   const history = useHistory()
@@ -27,7 +26,9 @@ export function HomePage(props) {
   }, [filter])
 
   useEffect(() => {
-    props.getMovieReviews()
+    if (!props.reviews.length) {
+      props.getMovieReviews()
+    }
   }, [])
 
   const navProps = {
@@ -73,6 +74,10 @@ export function HomePage(props) {
     },
   }
 
+  /**
+   * @param {Object[]} reviews stream of review data from JSON
+   * @returns filtered array based on filter helper checks
+   */
   const applyFilter = reviews => {
     return reviews
       .filter(review => {
@@ -86,24 +91,19 @@ export function HomePage(props) {
       .slice(0, filter.displayAmount)
   }
   return (
-    <>
-      <Helmet>
-        <meta name="description" content="Home" />
-      </Helmet>
-      <main>
-        <Navbar {...navProps} />
-        <PageContentWrapper>
-          <SearchBox title={filter.title} setTitle={filterSetters.setTitle} />
-          <DropDown>
-            <OptionsForm filter={filter} setters={filterSetters} />
-            <DateRangePicker filter={filter} setters={filterSetters} />
-          </DropDown>
-          {applyFilter(props.reviews).map(review => {
-            return <Review key={review.id} review={review} />
-          })}
-        </PageContentWrapper>
-      </main>
-    </>
+    <main>
+      <Navbar {...navProps} />
+      <PageContentWrapper>
+        <SearchBox title={filter.title} setTitle={filterSetters.setTitle} />
+        <DropDown>
+          <OptionsForm filter={filter} setters={filterSetters} />
+          <DateRangePicker filter={filter} setters={filterSetters} />
+        </DropDown>
+        {applyFilter(props.reviews).map(review => {
+          return <Review key={review.id} review={review} />
+        })}
+      </PageContentWrapper>
+    </main>
   )
 }
 

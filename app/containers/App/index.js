@@ -19,8 +19,8 @@ import '../../styles/styles.scss'
 export default function App(props) {
   return (
     <div className="app-wrapper">
-      <Helmet defaultTitle="Everyone's a critic">
-        <meta name="description" content="React Movie Reviews" />
+      <Helmet defaultTitle="Movie Picks and Ditches">
+        <meta name="Demo app for React/Redux" content="Movie Reviews" />
       </Helmet>
 
       <Switch>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet' // Header Generator
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { Switch, Route, useHistory, useParams } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 import { getMovieReviews } from 'resources/reviews/reviews.actions'
 
@@ -10,7 +11,7 @@ import PageContentWrapper from '../App/components/PageContentWrapper'
 import ReviewDetails from './components/ReviewDetails'
 import Navbar from '../App/components/Navbar'
 
-export function ReviewPage(props) {
+function ReviewPage(props) {
   const { review } = props
 
   const history = useHistory()
@@ -41,7 +42,7 @@ export function ReviewPage(props) {
   return (
     <>
       <Helmet>
-        <meta name="Review of " content="Review" />
+        <title>Review: {review.display_title}</title>
       </Helmet>
       <main>
         <Navbar {...navProps} />
@@ -53,9 +54,16 @@ export function ReviewPage(props) {
   )
 }
 
+ReviewPage.propTypes = {
+  review: PropTypes.object.isRequired,
+  getMovieReviews: PropTypes.func.isRequired,
+}
+
+/**
+ * grab the review from state with the url params
+ */
 const mapStateToProps = (state, ownProps) => {
   const { id } = ownProps.match.params
-  //TODO validate params
   const review = state.resources.reviews.data[Number(id)]
   return { review }
 }

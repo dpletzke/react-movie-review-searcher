@@ -14,7 +14,6 @@ import Critic from './components/Critic'
 export function CriticsPage(props) {
   const history = useHistory()
 
-
   /**
    * if no critics is passed in it probably means the
    * review page was attempted to be accessed directly through the address bar
@@ -39,7 +38,7 @@ export function CriticsPage(props) {
   return (
     <>
       <Helmet>
-        <meta name="description" content="Home" />
+        <title>Critics</title>
       </Helmet>
       <main>
         <Navbar {...navProps} />
