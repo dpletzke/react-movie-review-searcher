@@ -18,12 +18,11 @@ export function ReviewPage(props) {
   /**
    * if no Review is passed in it probably means the
    * review page was attempted to be accessed directly through the address bar
-   * in which case, load reviews into the store and refresh the page
+   * in which case, load reviews into the store
    */
   useEffect(() => {
     if (!props.review) {
       props.getMovieReviews()
-      history.push(props.location.pathname)
     }
   }, [])
 
