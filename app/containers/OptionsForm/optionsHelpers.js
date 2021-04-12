@@ -1,4 +1,4 @@
-export default function combineSetterAndSettings(settings, setters) {
+export default function mapClickHandlersToSettings(settings, setters) {
   const { setDisplayAmount, setRating, setIsPick } = setters
 
   const digestedSettings = settings.map(settingObj => {

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import OptionItemList from './OptionItemList'
-import combineSetterAndSettings from './optionsHelpers'
+import mapClickHandlersToSettings from './optionsHelpers'
 
 import { settings } from './settings'
 
@@ -15,18 +15,20 @@ const SettingsContainer = styled.div`
 `
 
 function OptionsForm({ setters, filter }) {
-  const optionGroups = combineSetterAndSettings(settings, setters).map(elm => {
-    const { label, optionsList, clickHandler, paramsKey } = elm
-    return (
-      <OptionItemList
-        key={label}
-        selected={filter[paramsKey]}
-        label={label}
-        optionsList={optionsList}
-        clickHandler={clickHandler}
-      />
-    )
-  })
+  const optionGroups = mapClickHandlersToSettings(settings, setters).map(
+    elm => {
+      const { label, optionsList, clickHandler, paramsKey } = elm
+      return (
+        <OptionItemList
+          key={label}
+          selected={filter[paramsKey]}
+          label={label}
+          optionsList={optionsList}
+          clickHandler={clickHandler}
+        />
+      )
+    }
+  )
 
   return <SettingsContainer>{optionGroups}</SettingsContainer>
 }
