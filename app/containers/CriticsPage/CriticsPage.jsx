@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 import { getMovieReviews } from 'resources/reviews/reviews.actions'
 import { getCritics } from 'resources/critics/critics.actions'
 
+import PageContentWrapper from '../App/components/PageContentWrapper'
 import Navbar from '../App/components/Navbar'
 import Critic from './components/Critic'
 
@@ -36,14 +37,16 @@ export function CriticsPage(props) {
       </Helmet>
       <main>
         <Navbar {...navProps} />
-        {props.critics.data.map(critic => {
-          const reviewHistory =
-            props.reviews.criticsReviewTracker[
-              critic.display_name.toUpperCase()
-            ]
-          const passCritic = { ...critic, ...reviewHistory }
-          return <Critic key={critic.sort_name} critic={passCritic} />
-        })}
+        <PageContentWrapper>
+          {props.critics.data.map(critic => {
+            const reviewHistory =
+              props.reviews.criticsReviewTracker[
+                critic.display_name.toUpperCase()
+              ]
+            const passCritic = { ...critic, ...reviewHistory }
+            return <Critic key={critic.sort_name} critic={passCritic} />
+          })}
+        </PageContentWrapper>
       </main>
     </>
   )
