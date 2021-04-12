@@ -6,6 +6,7 @@ import { Switch, Route, useHistory, useParams } from 'react-router-dom'
 
 import { getMovieReviews } from 'resources/reviews/reviews.actions'
 
+import PageContentWrapper from '../App/components/PageContentWrapper'
 import ReviewDetails from './components/ReviewDetails'
 import Navbar from '../App/components/Navbar'
 
@@ -28,12 +29,14 @@ export function ReviewPage(props) {
 
   const navProps = {
     leftNav: {
-      title: '<Back',
+      title: 'Back',
       onClick: () => {
         history.push('/')
       },
     },
-    title: `Review of ${review.title}`,
+    title: review
+      ? `${review.display_title} (${review.mpaa_rating || 'Unrated'})`
+      : 'Review',
   }
 
   return (
@@ -43,7 +46,9 @@ export function ReviewPage(props) {
       </Helmet>
       <main>
         <Navbar {...navProps} />
-        {review && <ReviewDetails review={review} />}
+        <PageContentWrapper>
+          {review && <ReviewDetails review={review} />}
+        </PageContentWrapper>
       </main>
     </>
   )
