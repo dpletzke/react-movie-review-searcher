@@ -1,7 +1,6 @@
 import produce from 'immer';
 
 import {
-  CRITICS_FETCH_REQUEST,
   CRITICS_FETCH_SUCCESS,
   CRITICS_FETCH_FAILURE,
 } from './critics.actions'
@@ -17,7 +16,6 @@ export default (state = initialState, action) => {
         draftState.data = action.payload
         return draftState
       })
-    //TODO: implement error handling
     case CRITICS_FETCH_FAILURE:
       return state
     default:
