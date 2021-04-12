@@ -53,6 +53,19 @@
     }
   }
 
+  // Secondary
+  &.nav-button {
+    color: var(--grey-100);
+    background-color: var(--primary-color);
+    font-weight: 600;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    &:hover {
+      color: var(--primary-color-dark);
+      background-color: var(--grey-100);
+    }
+  }
+
   // White
   &.white {
     color: var(--grey-800);

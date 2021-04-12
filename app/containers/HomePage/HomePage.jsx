@@ -34,7 +34,7 @@ export function HomePage(props) {
     leftNav: null,
     title: 'Movie Picks and Ditches',
     rightNav: {
-      title: 'See Critics',
+      title: 'Critics List',
       onClick: () => {
         history.push('/critics')
       },

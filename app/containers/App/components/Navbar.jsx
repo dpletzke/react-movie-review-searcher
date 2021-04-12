@@ -28,20 +28,24 @@ const Placeholder = styled.div`
   margin-bottom: 1rem;
 `
 
+const StyledButton = styled.button`
+  visibility: ${p => (p.title ? 'visible' : 'hidden')};
+  min-width: '100px';
+  font-size: var(--font-size-small);
+`
+
 const NavButton = props => {
   return (
-    <button
-      style={{
-        visibility: props.title ? 'visible' : 'hidden',
-        minWidth: '100px',
-      }}
+    <StyledButton
+      className="button nav-button"
+      title={props.title}
       onClick={() => {
         if (props.onClick) {
           props.onClick()
         }
       }}>
       {props.title}
-    </button>
+    </StyledButton>
   )
 }
 
