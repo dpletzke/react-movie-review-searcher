@@ -60,6 +60,7 @@
     font-weight: 600;
     margin: 0.5rem;
     padding: 0.5rem;
+    min-width: 55px;
     &:hover {
       color: var(--primary-color-dark);
       background-color: var(--grey-100);
