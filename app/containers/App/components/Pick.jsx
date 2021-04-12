@@ -5,10 +5,13 @@ import { faCheckCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 export function Pick(props) {
   const { isPick } = props
   return (
-    <FontAwesomeIcon
-      icon={isPick ? faCheckCircle : faTimesCircle}
-      color={isPick ? 'green' : 'red'}
-    />
+    <>
+      <FontAwesomeIcon
+        icon={isPick ? faCheckCircle : faTimesCircle}
+        color={isPick ? 'green' : 'red'}
+      />
+      {isPick ? ' Pick!' : ' Ditch'}
+    </>
   )
 }
 
