@@ -10,7 +10,7 @@ const Card = styled.article`
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 5px 0px var(--grey-400);
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   overflow-x: hidden;
   width: 100%;
   margin-top: 1rem;
