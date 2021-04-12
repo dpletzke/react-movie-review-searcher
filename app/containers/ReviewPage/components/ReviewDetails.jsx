@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -17,7 +17,6 @@ const Card = styled.article`
   width: 100%;
   margin-top: 1rem;
   @media (min-width: 536px) {
-    /* flex-direction: row; */
     p {
       font-size: var(--font-size);
       margin-right: auto;
@@ -71,14 +70,11 @@ const CardAction = styled.button`
   }
 `
 
-export function ReviewDetails(props) {
+function ReviewDetails(props) {
   const {
-    id,
     headline,
     byline,
     critics_pick,
-    display_title,
-    mpaa_rating,
     multimedia,
     publication_date,
     summary_short,
@@ -109,6 +105,22 @@ export function ReviewDetails(props) {
       </Form>
     </Card>
   )
+}
+
+ReviewDetails.propTypes = {
+  review: PropTypes.shape({
+    headline: PropTypes.string.isRequired,
+    byline: PropTypes.string.isRequired,
+    critics_pick: PropTypes.number.isRequired,
+    multimedia: PropTypes.shape({
+      src: PropTypes.string,
+    }),
+    publication_date: PropTypes.string.isRequired,
+    summary_short: PropTypes.string.isRequired,
+    link: PropTypes.shape({
+      url: PropTypes.string.isRequired,
+    }),
+  }),
 }
 
 export default ReviewDetails
