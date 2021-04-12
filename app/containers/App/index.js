@@ -29,6 +29,7 @@ export default function App(props) {
         <Route path="/reviews/:id" component={ReviewPage} />
         <Route path="/critics" component={CriticsPage} />
       </Switch>
+      <footer />
     </div>
   )
 }
