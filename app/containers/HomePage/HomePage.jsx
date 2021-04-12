@@ -8,12 +8,13 @@ import { getMovieReviews } from 'resources/reviews/reviews.actions'
 import { setUiFilter } from 'resources/ui/ui.actions'
 
 import Navbar from '../App/components/Navbar'
+import PageContentWrapper from '../App/components/PageContentWrapper'
 import Review from './components/Review'
 import OptionsForm from '../OptionsForm'
 import SearchBox from './components/SearchBox'
+import DropDown from './components/DropDown'
 
 import useFilter from '../../hooks/useFilter'
-import { defaults } from '../OptionsForm/settings'
 import DateRangePicker from './components/DateRangePicker'
 
 export function HomePage(props) {
@@ -91,12 +92,16 @@ export function HomePage(props) {
       </Helmet>
       <main>
         <Navbar {...navProps} />
-        <SearchBox title={filter.title} setTitle={filterSetters.setTitle} />
-        <OptionsForm filter={filter} setters={filterSetters} />
-        <DateRangePicker filter={filter} setters={filterSetters} />
-        {applyFilter(props.reviews).map(review => {
-          return <Review key={review.id} review={review} />
-        })}
+        <PageContentWrapper>
+          <SearchBox title={filter.title} setTitle={filterSetters.setTitle} />
+          <DropDown>
+            <OptionsForm filter={filter} setters={filterSetters} />
+            <DateRangePicker filter={filter} setters={filterSetters} />
+          </DropDown>
+          {applyFilter(props.reviews).map(review => {
+            return <Review key={review.id} review={review} />
+          })}
+        </PageContentWrapper>
       </main>
     </>
   )
