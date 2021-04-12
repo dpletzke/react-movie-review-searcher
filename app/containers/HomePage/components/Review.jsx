@@ -24,6 +24,13 @@ const Card = styled.article`
 `
 const CardImage = styled.img`
   border-radius: '0px 0px 10px 10px';
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  object-position: top;
+  @media (min-width: 536px) {
+    max-width: 150px;
+  }
 `
 const CardBody = styled.section`
   display: flex;
