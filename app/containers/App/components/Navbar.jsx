@@ -5,15 +5,27 @@ import styled from 'styled-components'
 const Bar = styled.nav`
   position: fixed;
   top: 0px;
-  height: 80px;
+  height: var(--header-height);
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--main-orange-dark);
+  z-index: 99;
+  span {
+    text-align: center;
+    color: var(--primary-color-light);
+    font-family: var(--fancy-font);
+    font-size: var(--font-size-large);
+  }
+  @media (min-width: 536px) {
+    span {
+      font-size: var(--font-size-xl);
+    }
+  }
 `
 const Placeholder = styled.div`
-  height: 80px;
+  height: var(--header-height);
+  margin-bottom: 1rem;
 `
 
 const NavButton = props => {
@@ -40,7 +52,7 @@ export function Navbar(props) {
       <Placeholder />
       <Bar>
         <NavButton {...leftNav} />
-        {titleClick ? <NavButton {...{ onClick: titleClick, title }} /> : title}
+        <span>{title}</span>
         <NavButton {...rightNav} />
       </Bar>
     </>
