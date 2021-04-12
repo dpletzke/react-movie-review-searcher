@@ -26,8 +26,27 @@ const CardImage = styled.img`
   border-radius: '0px 0px 10px 10px';
 `
 const CardBody = styled.section`
+  display: flex;
+  flex-direction: column;
   margin-left: 10px;
   margin-right: auto;
+  justify-content: space-evenly;
+  * {
+    /* margin: 1rem 0px 0px 0px; */
+    padding: 0px;
+  }
+  @media (min-width: 536px) {
+    * {
+      margin: 0px;
+    }
+  }
+`
+const CardAction = styled.button`
+  width: 95%;
+
+  @media (min-width: 536px) {
+    max-width: 115px;
+  }
 `
 
 export function Review(props) {
@@ -50,13 +69,13 @@ export function Review(props) {
     <Card>
       <CardImage src={multimedia.src} />
       <CardBody>
-        <h2>{`${display_title} (${mpaa_rating || 'Unrated'})`}</h2>
+        <h3>{`${display_title} (${mpaa_rating || 'Unrated'})`}</h3>
         <Pick isPick={critics_pick} />
         <p>Published: {publication_date}</p>
       </CardBody>
-      <button className="button" onClick={seeDetails}>
-        Details &gt;
-      </button>
+      <CardAction className="dark button" onClick={seeDetails}>
+        {`Read Review`}
+      </CardAction>
     </Card>
   )
 }

@@ -4,7 +4,7 @@
   justify-content: center;
   box-sizing: border-box;
   border: 2px solid transparent;
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
   margin: 0.5em;
   text-decoration: none;
   cursor: pointer;
@@ -95,10 +95,10 @@
     border: 2px solid var(--grey-600);
     font-weight: 600;
 
-    // &:hover {
-    //   background-color: var(--main-pink-dark);
-    //   border: 2px solid var(--main-pink-dark);
-    // }
+    &:hover {
+      background-color: var(--grey-800);
+      border: 2px solid var(--grey-800);
+    }
 
     &:disabled {
       background-color: var(--grey-200);
