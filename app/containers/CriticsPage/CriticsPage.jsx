@@ -14,6 +14,12 @@ import Critic from './components/Critic'
 export function CriticsPage(props) {
   const history = useHistory()
 
+
+  /**
+   * if no critics is passed in it probably means the
+   * review page was attempted to be accessed directly through the address bar
+   * in which case, load reviews into the store and refresh the page
+   */
   useEffect(() => {
     if (!props.critics.data.length) {
       props.getMovieReviews()
