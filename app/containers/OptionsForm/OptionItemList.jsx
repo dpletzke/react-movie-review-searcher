@@ -1,6 +1,33 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import OptionItem from './OptionItem'
-// import "./OptionItemList.scss";
+
+const Category = styled.div`
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  p {
+    font-size: var(--font-size-small);
+    margin-right: 0px;
+  }
+  @media (min-width: 536px) {
+    flex-direction: row;
+    p {
+      font-size: var(--font-size);
+      margin-right: auto;
+    }
+  }
+`
+
+const Options = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+`
 
 function OptionItemList({ optionsList, clickHandler, label, selected }) {
   const list = optionsList.map((item, index) => {
@@ -14,10 +41,10 @@ function OptionItemList({ optionsList, clickHandler, label, selected }) {
     )
   })
   return (
-    <div className="category-heading">
-      <h3>{label}</h3>
-      <div className="settings-group">{list}</div>
-    </div>
+    <Category>
+      <p>{label}</p>
+      <Options>{list}</Options>
+    </Category>
   )
 }
 

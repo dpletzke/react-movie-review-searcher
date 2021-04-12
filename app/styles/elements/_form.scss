@@ -1,10 +1,18 @@
 input {
   font-size: var(--font-size-small);
   height: 40px;
-  background: rgba(53, 2, 6, 0.05);
+  background: rgba(0, 0, 0, 0);
   border: 2px solid transparent;
 
   &:focus {
     border: 2px solid var(--grey-800);
+  }
+}
+
+input.option-date {
+  width: 110px;
+  color: var(--font-color-secondary);
+  &:focus {
+    border: none;
   }
 }

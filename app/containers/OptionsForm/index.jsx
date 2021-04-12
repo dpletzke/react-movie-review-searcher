@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import styled from 'styled-components'
+
 import OptionItemList from './OptionItemList'
-// import "./index.scss";
 import combineSetterAndSettings from './optionsHelpers'
 
 import { settings } from './settings'
+
+const SettingsContainer = styled.div`
+  width: 100%;
+  h1 {
+    font-size: 2em;
+    text-align: center;
+  }
+`
 
 function OptionsForm({ setters, filter }) {
   const optionGroups = combineSetterAndSettings(settings, setters).map(elm => {
@@ -19,7 +28,7 @@ function OptionsForm({ setters, filter }) {
     )
   })
 
-  return <div className="settings-container">{optionGroups}</div>
+  return <SettingsContainer>{optionGroups}</SettingsContainer>
 }
 
 export default OptionsForm

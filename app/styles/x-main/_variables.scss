@@ -1,4 +1,3 @@
-
 // another notation for sass variables that can be used for both styled-components and stylesheets.
 /* Usage:
 .button {
@@ -13,7 +12,9 @@ const Button = styled.button`
 */
 
 :root {
-  --primary-color: #fec85b;
+  --primary-color: #eab447;
+  --primary-color-light: #ffe679;
+  --primary-color-dark: #d6a033;
   --theme: 'default';
 
   //Screen Size
@@ -43,42 +44,46 @@ const Button = styled.button`
   --font-size-xl: 2rem; // ~32px
 
   //Fonts
-  --main-font: 'Open Sans',
-  sans-serif;
-  --fancy-font: 'Caveat',
-  cursive;
+  --main-font: 'Open Sans', sans-serif;
+  --fancy-font: 'Caveat', cursive;
 
   --font-weight-normal: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
   //Colors
-  --main-red: #F66531;
-  --main-red-dark: #CB4C2D;
+  --main-red: #f66531;
+  --main-red-dark: #cb4c2d;
 
-  --main-blue: #85A2D6;
-  --main-blue-dark: #587FC3;
+  --main-blue: #85a2d6;
+  --main-blue-dark: #587fc3;
 
-  --main-green: #90CA57;
-  --main-green-dark: #78AA48;
+  --main-green: #90ca57;
+  --main-green-dark: #78aa48;
 
-  --main-orange: #F68431;
-  --main-orange-dark: #CF6920;
+  --main-orange: #f68431;
+  --main-orange-dark: #cf6920;
 
-  --main-yellow: #FAC43D;
-  --main-yellow-dark: #D09F25;
+  --main-yellow: #fac43d;
+  --main-yellow-dark: #d09f25;
 
-  --main-pink: #FDA2C6;
-  --main-pink-dark: #D0789B;
+  --main-pink: #fda2c6;
+  --main-pink-dark: #d0789b;
+
+  --font-color-primary: #240305;
+  --font-color-secondary: #571116b6;
+
+  --main-background-color: #f6f2e9;
+  --main-background-color-dark: #ece8df;
 
   --black: #240305;
   --grey-800: #350206;
   --grey-600: #571116; //mahogany/neutral
-  --grey-400: #E1DED5;
-  --grey-300: #EEE6D2;
-  --grey-200: #F6F2E8;
-  --grey-100: #FBF9F5;
-  --white: #FFF;
+  --grey-400: #e1ded5;
+  --grey-300: #eee6d2;
+  --grey-200: #f6f2e8;
+  --grey-100: #fbf9f5;
+  --white: #fff;
 
   // Other standards
   --border-radius: 10px;
