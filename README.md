@@ -10,8 +10,8 @@ Finished Product
 
 <p align='center'>Review Page</p>
 <p align="center">
-  <img src="reviews.png" height="400">
-  <img src="reviews-mobile" height="400">
+  <img src="docs/review.png" height="400">
+  <img src="docs/review-mobile.png" height="400">
 </p>
 
 <p align='center'>Critics Page</p>
